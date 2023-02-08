@@ -14,7 +14,7 @@ const val COLUMN_ID = "_ID"
 const val COLUMN_NAME = "Name"
 const val COLUMN_DESCRIPTION = "Description"
 
-class BazaZadataka( context : Context ) :
+class BazaZadataka private constructor( context : Context ) :
     SQLiteOpenHelper( context, DATABASE_NAME, null, DATABASE_VERSION ) {
 
     override fun onCreate( db : SQLiteDatabase? ) {
@@ -84,4 +84,6 @@ class BazaZadataka( context : Context ) :
         db.close( )
         return list
     }
+
+    companion object : SingletonHolder< BazaZadataka, Context >( ::BazaZadataka )
 }
